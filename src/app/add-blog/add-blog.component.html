@@ -1,23 +1,26 @@
+<app-navbar></app-navbar>
 <app-header></app-header>
 <div class="container">
-<form #addBlog="ngForm" (ngSubmit)="onSubmit(addBlog)">
+<!-- <form #addBlog="ngForm" (ngSubmit)="onSubmit(addBlog)"> -->
+<form (ngSubmit)="onAddBlog()" #blogForm="ngForm">
     <div class="form-group">
       <label for="title">Title Blog</label>
-      <input type="text" class="form-control">
-     
+      <!-- <input type="text" class="form-control"> -->
+      <input type="text" class="form-control" name="blogTitle" ngModel required [(ngModel)]="blogTitle">
     </div>
     <div class="form-group">
         <label for="desc">Description</label>
-        <textarea class="form-control" rows="3"></textarea>
+        <textarea class="form-control" rows="3" name="blogDesc" ngModel required [(ngModel)]="blogDesc"></textarea>
       </div>
     <div class="form-group">
         <label for="description">Image</label>
-        <input type="text" class="form-control">
-       
+        <!-- <input type="text" class="form-control"> -->
+        <input type="text" class="form-control" name="blogImage" ngModel required [(ngModel)]="blogImage">
     </div>
     
-
-    <button type="submit" (click)="addBlog()" class="btn btn-primary">Submit</button>
+    <button [disabled]="blogForm.invalid" type="submit" class="btn btn-default">Submit</button>
+    <!-- <button type="submit" (click)="onSubmit(addBlog)" class="btn btn-primary">Submit</button> -->
   </form>
-</div>  
+</div>
+
 <app-footer></app-footer>

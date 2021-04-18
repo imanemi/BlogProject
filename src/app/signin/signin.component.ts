@@ -23,15 +23,18 @@ export class SigninComponent implements OnInit {
       this.disableSubmitBtn = !(field.username && field.password);
     })
   }
-      loginUser(){
-        const {username, password} = this.signinForm.value;
-        let index = this.registeredUsers.findIndex( regdUser => username.toLowerCase() === regdUser.username.toLowerCase() && password === regdUser.password )
-       console.log(index)
-        this.signinForm.reset();
-        this.loginService.loginObj = {name: '', isLoggedIn: false, loginNotification: true};
-        if(index !== -1) {
-          this.loginService.loginObj = {name: this.registeredUsers[index].username, isLoggedIn: true, loginNotification: true};
-          this.route.navigate(['/addBlog'])
-        }
-      }
+  loginUser(){
+    const {username, password} = this.signinForm.value;
+    let index = this.registeredUsers.findIndex( regdUser => username.toLowerCase() === regdUser.username.toLowerCase() && password === regdUser.password )
+    console.log(index)
+    this.signinForm.reset();
+    this.loginService.loginObj = {index: -1, isLoggedIn: false, loginNotification: true};
+    if(index !== -1) {
+      this.loginService.loginObj = {index: index, isLoggedIn: true, loginNotification: true};
+      this.route.navigate(['/addBlog'])
+    }
+  }
+  logoutUser() {
+    this.loginService.loginObj = {index: -1, isLoggedIn: false, loginNotification: true};
+  }
 }

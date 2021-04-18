@@ -3,17 +3,15 @@
     <h1>Welcome to my blog!</h1>
     
     <div class="row ">
-        <div  *ngFor="let bl of blog;let i=index;">
+        <div  *ngFor="let bl of getBlogs();let i=index;">
             <div *ngIf="i%3===0">
-            
-        
                 <div  *ngFor="let j1 of getList(getInnerLoopLimit(i, 3));let j =index;">
                     <div class="col-sm-">
                         <div class="card" style="width: 18rem;"  >
                             
-                            <img class="card-img-top" src="{{blog[i+j].image}}" alt="Card image cap">
+                            <img class="card-img-top" src="{{getBlogs()[i+j].image}}" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">{{blog[i+j].title}}</h5>
+                                <h5 class="card-title">{{getBlogs()[i+j].title}}</h5>
                                 <div class="row">
                                     
                                     <div class="col">
@@ -40,7 +38,7 @@
 </div>
 
 <div class="col"> 
-    <button   (click)="createBlog()"class="btn btn-primary">Add Blog</button>
+    <button   (click)="getAddBlog()"class="btn btn-primary">Add Blog</button>
 </div>
 
 <!--<div class="row" >

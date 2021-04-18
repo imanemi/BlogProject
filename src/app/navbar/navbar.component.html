@@ -15,11 +15,17 @@
               <a class="nav-link " routerLink="/contact">Contact</a>
             </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/signin">Signin</a>
+          <button [disabled]="isLoggedIn()" class="btn btn-link" routerLink="/signin"> {{ getSigninButtonName() }} </button>
+          <!-- <a class="nav-link" routerLink="/signin">Signin</a> -->
         </li>
         <li class="nav-item">
-            <a class="nav-link " routerLink="/signup">Signup</a>
-          </li>
+          <button [hidden]="isLoggedIn()" class="btn btn-link" routerLink="/signup"> Signup </button>  
+          <!-- <a class="nav-link " routerLink="/signup">Signup</a> -->
+        </li>
+        <li class="nav-item">
+          <button [disabled]="!isLoggedIn()" class="btn btn-link" routerLink="/signout" (click)="onLogout()"> Logout </button>
+          <!-- <a class="nav-link  routerLink="/signout">Logout</a> -->
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

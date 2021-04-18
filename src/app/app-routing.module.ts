@@ -20,6 +20,7 @@ const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'signout', component: HomeComponent },
     {path:'addBlog',component:AddBlogComponent},
     {path:'**',component:PageNotFoundComponent}
     

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BlogService } from '../service/blog.service';
 import { HttpcallService } from './../service/httpcall.service';
+import { NgForm, NgModelGroup } from '@angular/forms';
+import { IBlog } from '../interface/IBlog';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-add-blog',
@@ -8,17 +11,37 @@ import { HttpcallService } from './../service/httpcall.service';
   styleUrls: ['./add-blog.component.css']
 })
 export class AddBlogComponent implements OnInit {
-  blog:{id:number,title:string,description:string,image:string,loginId:number}[];
-  constructor(private hpc:HttpcallService,bs:BlogService) { this.blog=bs.blogs}
+  @ViewChild('blogForm') addBlogForm: NgForm;
+  newBlog :IBlog = {id:-1,title:'',description:'',image:'',loginId:-1};
+  blogTitle = '';
+  blogDesc = '';
+  blogImage = '';
+  // blog:{id:number,title:string,description:string,image:string,loginId:number}[];
+  constructor(private loginService: LoginService, private hpc:HttpcallService,bs:BlogService) { }
 
   ngOnInit(): void {
   }
-  addBlog(){
-    //this.blog[index].id=null
-    //return this.hpc.toPost(this.blog).subscribe
-    //(blog=>alert(`Anew user created with an id :${blog.id}`))
-  }
-  onSubmit(addB:any){
-    console.log(addB)
+  // addBlog() {
+  //   console.log('addBlog: ', this)
+  //   //this.blog[index].id=null
+  //   //return this.hpc.toPost(this.blog).subscribe
+  //   //(blog=>alert(`Anew user created with an id :${blog.id}`))
+  // }
+  // onSubmit(addB:any){
+  //   console.log('onsubmit', addB)
+  // }
+  blogs:IBlog [] = [];
+  onAddBlog() {
+    // console.log('onAddBlog: ', this.addBlogForm.form.value)
+    this.newBlog.title = this.addBlogForm.form.value.blogTitle;
+    this.newBlog.description = this.addBlogForm.form.value.blogDesc;
+    this.newBlog.image = this.addBlogForm.form.value.blogImage;
+    this.hpc.toGetAll().subscribe(
+      (resBlogs)=>this.blogs = resBlogs,
+      (error)=>console.log(error),
+      ()=>console.log("Completed"));
+    this.newBlog.id = this.blogs.length;       // auto-generate the id
+    this.newBlog.loginId = this.loginService.getLoginId();  // the id of current logged in user
+    return this.hpc.toPost(this.newBlog).subscribe(blog=>alert(`A new blog is created with an id :${blog.id}`))
   }
 }

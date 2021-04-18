@@ -15,10 +15,10 @@ export class LoginService {
     {username: 'Sirirani', password: '123!333',loginId:7},
     {username: 'Abhishek', password: '123!655',loginId:8},
   ]
-  loginObj = {name: '', isLoggedIn: false, loginNotification: false}
+  loginObj = {index: -1, isLoggedIn: false, loginNotification: false}
   constructor() {}
   resetLoginObj() {
-      this.loginObj = {name: '', isLoggedIn: false, loginNotification: false};
+      this.loginObj = {index: -1, isLoggedIn: false, loginNotification: false};
   }
   getLoginFailMessages() {
     return ['Sorry! you are not logged in :(', 'Only logged in users can continue!'];
@@ -29,6 +29,19 @@ export class LoginService {
     }
     return {class: 'alert-danger', message: 'Invalid Credentials!'};
   }
-
-  
+  getLoginId() {
+    if (this.loginObj.index <= -1 && this.loginObj.index >= this.registeredUsers.length){
+      return -1;
+    }
+    return this.registeredUsers[this.loginObj.index].loginId;
+  }
+  getLoginName() {
+    if (this.loginObj.index <= -1 && this.loginObj.index >= this.registeredUsers.length){
+      return '';
+    }
+    return this.registeredUsers[this.loginObj.index].username;
+  }
+  getIsLoggedIn() {
+    return this.loginObj.isLoggedIn;
+  }
 }
