@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<app-header></app-header>
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+        <div class="jumbotron">
+            <div class="card-body">
+                <h3 class="card-title">Login</h3>
+                <form [formGroup]="signinForm" (ngSubmit)="!disableSubmitBtn && loginUser()">
+                    <div class="form-group">
+                        <label for="name">userName</label>
+                        <input type="text" class="form-control help-block" formControlName="username" >
+                        
+                        
+                    </div>
+                    <span *ngIf="signinForm.controls.username.invalid && signinForm.controls.username.touched" class="helper-block alert-danger">Username field cannot be empty!</span>
+                    
+                    <div class="form-group">
+                        <label for="pwd">Password</label>
+                        <input type="password" class="form-control" formControlName="password" >
+                    </div>
+                    <span *ngIf="signinForm.controls.password.errors && signinForm.controls.password.touched" class="helper-block alert-danger">Password field cannot be empty!</span>
+
+                    <button type="submit" [disabled]="signinForm.invalid" class="btn btn-success spacing">Submit</button>
+                </form>
+            </div>	
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
+<app-footer></app-footer>

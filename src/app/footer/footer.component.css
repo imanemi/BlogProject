@@ -1,0 +1,44 @@
+
+.spacing {
+    margin-right: 10px;
+  }
+  .icon-size {
+    font-size: 30px
+  }
+  .color-facebook {
+    color: #4267B2;
+  }
+  .color-twitter {
+    color: #1DA1F2;
+  }
+  .color-whatsapp {
+    color: #25d366;
+  }
+  .color-instagram {
+    color: #d6249f;
+  }
+  .footer{
+    background-color: gray !important;
+    padding: 30px 0px;
+    z-index: 2;
+    position: relative;
+  }
+  .footer-links li {
+    padding-right: 20px;
+    font-size: 14px;
+    color: #fff;
+    list-style: none;
+  }
+  .footer-links a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .footer-btn {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: white;
+    /* color: #069; */
+    cursor: pointer;
+  }
+  
