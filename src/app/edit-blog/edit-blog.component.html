@@ -2,7 +2,7 @@
 <app-header></app-header>
 <div class="container">
 <!-- <form #addBlog="ngForm" (ngSubmit)="onSubmit(addBlog)"> -->
-<form (ngSubmit)="onAddBlog()" #blogForm="ngForm">
+<form (ngSubmit)="editBlog()" #blogForm="ngForm">
     <div class="form-group">
       <label for="title">Title Blog</label>
       <!-- <input type="text" class="form-control"> -->
@@ -18,7 +18,7 @@
         <input type="text" class="form-control" name="blogImage" ngModel required [(ngModel)]="blogImage">
     </div>
     
-    <button [disabled]="blogForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+    <button  type="submit" class="btn btn-primary">Submit</button>
     <!-- <button type="submit" (click)="onSubmit(addBlog)" class="btn btn-primary">Submit</button> -->
   </form>
 </div>

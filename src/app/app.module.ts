@@ -18,6 +18,7 @@ import { BlogComponent } from './blog/blog.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddBlogComponent } from './add-blog/add-blog.component';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AddBlogComponent } from './add-blog/add-blog.component';
     BlogComponent,
     HomeComponent,
     PageNotFoundComponent,
-    AddBlogComponent
+    AddBlogComponent,
+    EditBlogComponent
   ],
   imports: [
     BrowserModule,

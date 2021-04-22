@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { DescriptionComponent } from './description/description.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddBlogComponent } from './add-blog/add-blog.component';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
 
 const routes: Routes = [
   {path:"",redirectTo:"/home" ,pathMatch:"full"},
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent },
     { path: 'signout', component: HomeComponent },
     {path:'addBlog',component:AddBlogComponent},
+    {path:'editBlog/:id',component:EditBlogComponent},
     {path:'**',component:PageNotFoundComponent}
     
 ];

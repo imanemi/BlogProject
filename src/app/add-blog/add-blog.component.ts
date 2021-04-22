@@ -21,15 +21,7 @@ export class AddBlogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  // addBlog() {
-  //   console.log('addBlog: ', this)
-  //   //this.blog[index].id=null
-  //   //return this.hpc.toPost(this.blog).subscribe
-  //   //(blog=>alert(`Anew user created with an id :${blog.id}`))
-  // }
-  // onSubmit(addB:any){
-  //   console.log('onsubmit', addB)
-  // }
+ 
   blogs:IBlog [] = [];
   onAddBlog() {
     // console.log('onAddBlog: ', this.addBlogForm.form.value)

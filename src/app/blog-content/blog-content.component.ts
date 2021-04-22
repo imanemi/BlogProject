@@ -30,20 +30,12 @@ export class BlogContentComponent implements OnInit {
     return this.blogs;
   }
   ngOnInit(): void {
-  //  this.actRout.params.subscribe(params=>{
-  //     this.hpc.toGetForId(+params['id']).subscribe(
-  //       blog=>this.blog=blog
-  //     );
-  //   });
+  
     this.hpc.toGetAll().subscribe(
       (resBlogs)=>this.blogs = resBlogs,
       (error)=>console.log(error),
       ()=>console.log("Completed"));
-      // this.actRout.params.subscribe(params=>{
-      //   this.hpc.toGetForId(+params[`${this.getBlogs()[index].id}`]).subscribe(
-      //       resBlog=>this.singleBlog=resBlog
-      //     );
-      // });
+      
   }
   getList(n:number):any[]{
     return Array(n);
@@ -67,35 +59,22 @@ export class BlogContentComponent implements OnInit {
       this.route.navigate(['/signin'])
     }
   }
-  disableButton(index:number){
-    //his.blogs.filter(blog=>blog.id===id)[0]
-    //if((this.blog[index].loginId)===(this.registeredUsers[index].loginId))
-    //this.isDisable=true;
-    
-    console.log(this.isDisable)
 
+  editBlog(index:number) {
+    if(this.login.getIsLoggedIn() === true) {
+      this.isDisable=true
+      this.route.navigate([`/editBlog/${this.getBlogs()[index].id}`])
+    } else {
+      this.isDisable=false
+      this.route.navigate(['/signin'])
+    }
   }
+  
   getDescriptionRoute(index:number) {
     return `/description/${this.getBlogs()[index].id}`
   }
-// createBlog() {
-  
-//   // this.hpc.toPost(this.blogs).subscribe(
-//   //   blog=>alert(`Anew blog cretated with:`),
-//   //   err=>alert(`got an error as ${err}`),
-//   //   ()=>alert(`Creation of user completed`)
-//   // );
 
-// }
-editBlog(index){
-  
-  this.getBlogs()[index].title="test"
-  this.hpc.toUpdate(this.getBlogs()[index]).subscribe(
-    blog=>alert(` the blog was  updated with:`),
-    err=>alert(`got an error as ${err}`),
-    ()=>alert(`updation of user completed`)
-    );
-}
+
 getDesForId(index:number){return this.hpc.toGetForId(this.getBlogs()[index].id).subscribe}
 
 
@@ -103,14 +82,10 @@ getDesForId(index:number){return this.hpc.toGetForId(this.getBlogs()[index].id).
   {
     this.hpc.toDelete(this.getBlogs()[index].id).subscribe
     (
-      blog=>alert(` The blog was  deleted with:`),
+      blog=>alert(` The blog was  deleted with:${this.getBlogs()[index].id}`),
       err=>alert(`Got an error as ${err}`),
       ()=>alert(`Deletion of blog completed`)
       );
   }
-  /*deleteBlog(obj){
-    console.log(obj)
-    this.blog = this.blog.filter(item => item.id !== obj);
-    console.log(obj)
-  }*/
+
 }
